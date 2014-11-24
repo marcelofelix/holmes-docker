@@ -18,7 +18,8 @@ RUN DIR=$(mktemp -d) \
     && curl -O -L http://www.rabbitmq.com/releases/rabbitmq-server/v${RABBITMQ_VERSION}/rabbitmq-server-${RABBITMQ_VERSION}-1.noarch.rpm \
     && yum install -y rabbitmq-server-${RABBITMQ_VERSION}-1.noarch.rpm \
     && rabbitmq-plugins enable rabbitmq_management \
-    && echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config
+    && echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config \
+    && rm -rf ${DIR}
 
 # Aux folders
 RUN mkdir -p /var/lock/subsys/ \

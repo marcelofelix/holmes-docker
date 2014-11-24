@@ -25,5 +25,7 @@ RUN curl -SL "$TOMCAT_TGZ_URL" -o tomcat.tar.gz \
 
 COPY ./server.xml /usr/local/tomcat/conf/server.xml
 
+ENV CATALINA_OPTS -server -Xms256M -Xmx2048M -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC -XX:+CMSPermGenSweepingEnabled -XX:+CMSClassUnloadingEnabled -Dfile.encoding=UTF-8
+
 EXPOSE 8080
 CMD ["catalina.sh", "run"]

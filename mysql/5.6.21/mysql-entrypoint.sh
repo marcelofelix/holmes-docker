@@ -21,7 +21,8 @@ if [ ! -d '/var/lib/mysql/mysql' -a "${1%_safe}" = 'mysqld' ]; then
 
   if [ "$CREATION_SCRIPT" ]; then
     echo >&2 'Appending creation script.'
-    cat ${CREATION_SCRIPT} >> "$TEMP_FILE"
+    echo ${CREATION_SCRIPT} | tr ";" "\n" | xargs cat  >> "$TEMP_FILE"
+#    cat ${CREATION_SCRIPT} >> "$TEMP_FILE"
   fi
 
   if [ -z "$CREATION_SCRIPT" ]; then

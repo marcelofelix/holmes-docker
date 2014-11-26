@@ -21,10 +21,10 @@ RUN DIR=$(mktemp -d) \
     && { find /usr/local/mysql -type f -executable -exec strip --strip-all '{}' + || true; } \
     && rm -rf ${DIR}
 
+ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
+
 COPY mysql-entrypoint.sh /mysql-entrypoint.sh
 RUN chmod +x /mysql-entrypoint.sh
-
-ENV PATH $PATH:/usr/local/mysql/bin:/usr/local/mysql/scripts
 
 WORKDIR /usr/local/mysql
 VOLUME /var/lib/mysql

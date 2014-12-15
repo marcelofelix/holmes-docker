@@ -16,9 +16,6 @@ RUN DIR=$(mktemp -d) \
 RUN mkdir -p /data
 RUN cp -R /opt/solr/example/solr /data
 RUN sed -ioriginal 's/..\/..\/..\//\/opt\/solr\//g' /data/solr/collection1/conf/solrconfig.xml
-RUN mkdir /data/schema/ \
-    && mv /data/solr/collection1/conf/schema.xml /data/schema/schema.xml \
-    && ln -s /data/schema/schema.xml /data/solr/collection1/conf/schema.xml
 
 VOLUME ["/data/solr/collection1/data"]
 
